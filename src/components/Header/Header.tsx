@@ -1,5 +1,5 @@
 import {Button} from "../Button/Button";
-import {useTelegram} from "../../../hooks/useTelegram";
+import {useTelegram} from "../../hooks/useTelegram";
 
 export const Header = () => {
   const { onClose, user, tg } = useTelegram()
