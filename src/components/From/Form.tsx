@@ -1,5 +1,5 @@
 import './Form.scss'
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useCallback, useEffect, useState} from "react";
 import {useTelegram} from "../../hooks/useTelegram";
 
 export const Form = () => {
@@ -7,6 +7,22 @@ export const Form = () => {
   const [street, setStreet] = useState('')
   const [subject, setSubject] = useState('physical')
   const { tg } = useTelegram()
+
+  const onSendData = useCallback(() => {
+    const data = {
+      country,
+      street,
+      subject
+    }
+    tg.sendDate(JSON.stringify(data))
+  }, [])
+
+  useEffect(() => {
+    tg.onEvent('mainButtonClicked', onSendData)
+    return () => {
+      tg.offEvent('mainButtonClicked', onSendData)
+    }
+  }, [])
 
   useEffect(() => {
     tg.MainButton.setParams({
