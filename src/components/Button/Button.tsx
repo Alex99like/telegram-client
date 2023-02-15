@@ -1,4 +1,5 @@
 import {ButtonHTMLAttributes, FC, PropsWithChildren} from "react";
+import './Button.scss'
 
 type IButton = ButtonHTMLAttributes<HTMLButtonElement>;
 
